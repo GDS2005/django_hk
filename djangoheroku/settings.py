@@ -26,7 +26,7 @@ SECRET_KEY = '2qtm%-&pgxqa)#ih=gb@#6#!%wt2u*8g@4@0ga^xa=20jk8@p6'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['https://djangohk.herokuapp.com/']
+ALLOWED_HOSTS = ['https://djangohk.herokuapp.com/','127.0.0.1']
 
 
 # Application definition
@@ -76,14 +76,15 @@ WSGI_APPLICATION = 'djangoheroku.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-#DATABASES = {
-#    'default': {
-#        'ENGINE': 'django.db.backends.sqlite3',
-#        'NAME': BASE_DIR / 'db.sqlite3',
-#    }
-#}
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
 prod_db = dj_database_url.config(conn_max_age=500)
-DATABASE['default'].update(prod_db)
+DATABASES['default'].update(prod_db)
+
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
@@ -120,14 +121,15 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
-PROJECT_ROOT = os.path.join(os.path.abspath(__file__))
-STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
+#PROJECT_ROOT = os.path.join(os.path.abspath(__file__))
+#STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
 STATIC_URL = '/static/'
 
 #Extra lookup directories for collectstatic to fin static files.
-STATICFILES_DIRS = (
-    os.path.join(PROJECT_ROOT, 'static')
-)
+#STATICFILES_DIRS = (
+#    os.path.join(PROJECT_ROOT, 'static')
+#)
 
 # Add configuration for static files storage using 'whitenoise'
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+
